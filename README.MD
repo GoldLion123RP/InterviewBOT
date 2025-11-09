@@ -414,7 +414,7 @@ questions_db = {
 ![Quiz Screen](https://via.placeholder.com/800x400?text=Quiz+Interface)
 
 ### Results Dashboard
-![Results Screen](https://via.placeholder.com/800x400?text=Results+Dashboard)
+![![alt text](image.png)](https://via.placeholder.com/800x400?text=Results+Dashboard)
 
 ---
 
@@ -426,7 +426,7 @@ We welcome contributions! Here's how you can help:
 
 1. **Fork the repository**
    ```bash
-   git fork https://github.com/yourusername/cse-interview-chatbot.git
+   git fork https://github.com/GoldLion123RP/InterviewBOT.git
    ```
 
 2. **Create a feature branch**
