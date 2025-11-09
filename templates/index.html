@@ -145,6 +145,33 @@
                 </div>
             </div>
         </div>
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="questionNumber">Question 1/5</span>
+                    <span id="currentTopic" class="topic-badge">DSA</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span>
+                    <span id="timer">00:00</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h3 id="questionText" class="question-text"></h3>
+                <div id="optionsContainer" class="options-container">
+                    <!-- Options will be loaded here -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="submitBtn" class="btn btn-primary" onclick="submitAnswer()" disabled>Submit Answer</button>
+            </div>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
