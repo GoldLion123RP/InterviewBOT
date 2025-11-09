@@ -1,3 +1,10 @@
+![GitHub stars](https://img.shields.io/github/stars/yourusername/cse-interview-chatbot?style=social)
+![GitHub forks](https://img.shields.io/github/forks/yourusername/cse-interview-chatbot?style=social)
+![GitHub issues](https://img.shields.io/github/issues/yourusername/cse-interview-chatbot)
+![GitHub license](https://img.shields.io/github/license/yourusername/cse-interview-chatbot)
+![Python version](https://img.shields.io/badge/python-3.8+-blue.svg)
+
+
 # 🎓 CSE Interview Chatbot
 
 A modern, interactive web-based interview preparation platform for Computer Science and Engineering students. Test your knowledge across 6 core CSE subjects with MCQ-based questions, real-time timer, and instant feedback.
