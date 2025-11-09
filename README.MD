@@ -510,11 +510,11 @@ SOFTWARE.
 
 **Project Maintainer:** Your Name
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- GitHub: [@GoldLion123RP](https://github.com/GoldLion123RP)
+- Email: goldlion123.rp@gmail.com
+- LinkedIn: [https://www.linkedin.com/in/rahul-pal-133a67153/](https://www.linkedin.com/in/rahul-pal-133a67153/)
 
-**Project Link:** [https://github.com/yourusername/cse-interview-chatbot](https://github.com/yourusername/cse-interview-chatbot)
+**Project Link:** [TAP TO OPEN](https://interviewbot-rqwq.onrender.com)
 
 ---
 
