@@ -414,7 +414,7 @@ questions_db = {
 ![Quiz Screen](https://via.placeholder.com/800x400?text=Quiz+Interface)
 
 ### Results Dashboard
-![![alt text](image.png)](https://via.placeholder.com/800x400?text=Results+Dashboard)
+![Results Screen](https://via.placeholder.com/800x400?text=Results+Dashboard)
 
 ---
 
