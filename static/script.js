@@ -4,6 +4,8 @@ let currentQuestionIndex = 0;
 let selectedAnswer = null;
 let score = 0;
 let userAnswers = [];
+let timerInterval = null;
+let totalSeconds = 0;
 
 const topicIcons = {
     'DSA': '🔢',
@@ -13,6 +15,41 @@ const topicIcons = {
     'CN': '🌐',
     'AI': '🤖'
 };
+
+// Timer Functions
+function startTimer() {
+    totalSeconds = 0;
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        totalSeconds++;
+        updateTimerDisplay();
+        
+        // Warning at 5 minutes
+        if (totalSeconds === 300) {
+            document.querySelector('.timer-container').classList.add('warning');
+        }
+    }, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.getElementById('timer').textContent = display;
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes}m ${secs}s`;
+}
 
 // Screen Navigation
 function showScreen(screenId) {
@@ -24,12 +61,14 @@ function showScreen(screenId) {
 
 function showWelcome() {
     showScreen('welcomeScreen');
+    stopTimer();
     resetQuiz();
 }
 
 function showTopicSelection() {
     loadTopics();
     showScreen('topicScreen');
+    stopTimer();
 }
 
 function showConfig(topic) {
@@ -119,7 +158,11 @@ async function startQuiz() {
         score = 0;
         userAnswers = [];
         
+        // Reset timer warning
+        document.querySelector('.timer-container')?.classList.remove('warning');
+        
         showScreen('quizScreen');
+        startTimer();
         loadQuestion();
         
     } catch (error) {
@@ -130,6 +173,7 @@ async function startQuiz() {
 // Load Question
 function loadQuestion() {
     if (currentQuestionIndex >= questions.length) {
+        stopTimer();
         showResults();
         return;
     }
@@ -195,6 +239,9 @@ function submitAnswer() {
         isCorrect: isCorrect
     });
     
+    // Pause timer during explanation
+    stopTimer();
+    
     // Show explanation
     showExplanation(isCorrect, question.explanation);
 }
@@ -222,6 +269,12 @@ function showExplanation(isCorrect, explanation) {
 function nextQuestion() {
     currentQuestionIndex++;
     showScreen('quizScreen');
+    
+    // Resume timer if not finished
+    if (currentQuestionIndex < questions.length) {
+        startTimer();
+    }
+    
     loadQuestion();
 }
 
@@ -242,22 +295,24 @@ function showResults() {
     const offset = circumference - (percentage / 100 * circumference);
     document.getElementById('scoreCircle').style.strokeDashoffset = offset;
     
-    // Performance message
+    // Performance message with time
     const messageDiv = document.getElementById('performanceMessage');
+    const timeMsg = `⏱️ Time taken: ${formatTime(totalSeconds)}`;
+    
     if (percentage >= 80) {
-        messageDiv.textContent = '🌟 Excellent! You have strong knowledge!';
+        messageDiv.innerHTML = `🌟 Excellent! You have strong knowledge!<br>${timeMsg}`;
         messageDiv.style.background = 'rgba(16, 185, 129, 0.1)';
         messageDiv.style.color = 'var(--success)';
     } else if (percentage >= 60) {
-        messageDiv.textContent = '👍 Good job! Keep practicing!';
+        messageDiv.innerHTML = `👍 Good job! Keep practicing!<br>${timeMsg}`;
         messageDiv.style.background = 'rgba(59, 130, 246, 0.1)';
         messageDiv.style.color = '#3b82f6';
     } else if (percentage >= 40) {
-        messageDiv.textContent = '📖 Not bad! More study needed!';
+        messageDiv.innerHTML = `📖 Not bad! More study needed!<br>${timeMsg}`;
         messageDiv.style.background = 'rgba(245, 158, 11, 0.1)';
         messageDiv.style.color = 'var(--warning)';
     } else {
-        messageDiv.textContent = '💪 Keep learning! Practice makes perfect!';
+        messageDiv.innerHTML = `💪 Keep learning! Practice makes perfect!<br>${timeMsg}`;
         messageDiv.style.background = 'rgba(239, 68, 68, 0.1)';
         messageDiv.style.color = 'var(--danger)';
     }
@@ -273,6 +328,8 @@ function resetQuiz() {
     selectedAnswer = null;
     score = 0;
     userAnswers = [];
-    document.getElementById('numQuestions').value = 5;
-    document.getElementById('questionCount').textContent = '5';
+    totalSeconds = 0;
+    document.getElementById('numQuestions').value = 10;
+    document.getElementById('questionCount').textContent = '10';
+    document.querySelector('.timer-container')?.classList.remove('warning');
 }
