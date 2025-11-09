@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE Interview Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <div class="logo">
+                    <div class="logo-icon">🎓</div>
+                    <h1>CSE Interview Chatbot</h1>
+                </div>
+                <p class="subtitle">Test your knowledge in core Computer Science subjects</p>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">📚</span>
+                        <span>6 Core Topics</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✅</span>
+                        <span>MCQ Format</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💡</span>
+                        <span>Instant Feedback</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="showTopicSelection()">Start Interview</button>
+            </div>
+        </div>
+
+        <!-- Topic Selection Screen -->
+        <div id="topicScreen" class="screen">
+            <div class="header">
+                <h2>Select Topic</h2>
+                <p>Choose a subject area for your interview</p>
+            </div>
+            <div id="topicGrid" class="topic-grid">
+                <!-- Topics will be loaded here -->
+            </div>
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="showWelcome()">Back</button>
+            </div>
+        </div>
+
+        <!-- Question Configuration Screen -->
+        <div id="configScreen" class="screen">
+            <div class="header">
+                <h2>Configure Interview</h2>
+                <p id="selectedTopicName"></p>
+            </div>
+            <div class="config-content">
+                <div class="config-option">
+                    <label for="numQuestions">Number of Questions:</label>
+                    <div class="slider-container">
+                        <input type="range" id="numQuestions" min="1" max="10" value="5">
+                        <span id="questionCount">5</span>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="showTopicSelection()">Back</button>
+                    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="questionNumber">Question 1/5</span>
+                    <span id="currentTopic" class="topic-badge">DSA</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h3 id="questionText" class="question-text"></h3>
+                <div id="optionsContainer" class="options-container">
+                    <!-- Options will be loaded here -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="submitBtn" class="btn btn-primary" onclick="submitAnswer()" disabled>Submit Answer</button>
+            </div>
+        </div>
+
+        <!-- Explanation Screen -->
+        <div id="explanationScreen" class="screen">
+            <div class="explanation-content">
+                <div id="resultIcon" class="result-icon"></div>
+                <h3 id="resultText" class="result-text"></h3>
+                <div class="explanation-box">
+                    <h4>💡 Explanation:</h4>
+                    <p id="explanationText"></p>
+                </div>
+                <button class="btn btn-primary" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-content">
+                <h2>Interview Complete! 🎉</h2>
+                <div class="score-circle">
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="90" class="score-circle-bg"></circle>
+                        <circle id="scoreCircle" cx="100" cy="100" r="90" class="score-circle-fill"></circle>
+                    </svg>
+                    <div class="score-text">
+                        <span id="scorePercentage">0%</span>
+                        <span class="score-label">Score</span>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalQuestions">0</div>
+                        <div class="stat-label">Total Questions</div>
+                    </div>
+                    <div class="stat-card correct">
+                        <div class="stat-value" id="correctAnswers">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-card wrong">
+                        <div class="stat-value" id="wrongAnswers">0</div>
+                        <div class="stat-label">Wrong</div>
+                    </div>
+                </div>
+
+                <div id="performanceMessage" class="performance-message"></div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="showWelcome()">Home</button>
+                    <button class="btn btn-primary" onclick="showTopicSelection()">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
