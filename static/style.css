@@ -616,3 +616,138 @@ body {
 .quiz-header {
     margin-bottom: 30px;
 }
+
+/* Quick Fix - Add at the end of style.css */
+/* .config-content {
+    text-align: center !important;
+}
+
+.slider-container {
+    margin: 0 auto !important;
+    padding: 25px !important;
+    width: 90% !important;
+    max-width: 500px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.slider-container input[type="range"] {
+    width: 300px !important;
+    height: 15px !important;
+    background: #ddd !important;
+    border-radius: 10px !important;
+    outline: 3px solid var(--primary) !important;
+    opacity: 1 !important;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    width: 30px !important;
+    height: 30px !important;
+    background: var(--primary) !important;
+    cursor: pointer !important;
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+    width: 30px !important;
+    height: 30px !important;
+    background: var(--primary) !important;
+    cursor: pointer !important;
+} */
+
+/* Configuration Screen - Complete Redesign */
+.config-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.config-option {
+    background: var(--light);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.config-option label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Big, Bold Slider */
+.slider-container input[type="range"] {
+    width: 70%;
+    max-width: 350px;
+    height: 15px;
+    border-radius: 15px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.slider-container input[type="range"]:hover {
+    opacity: 1;
+}
+
+/* Chrome & Safari */
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+    border: 3px solid var(--white);
+}
+
+/* Firefox */
+.slider-container input[type="range"]::-moz-range-thumb {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+    border: 3px solid var(--white);
+}
+
+/* Question count display */
+#questionCount {
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    min-width: 80px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Make the whole config area more prominent */
+#selectedTopicName {
+    font-size: 18px;
+    color: var(--primary);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
